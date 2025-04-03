@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- Задание 1
+<div id="block">
+	<p>1</p>
+	<p>2</p>
+</div>
+1. Получите ссылку на первый абзац из дива с id, равным block, выведите его в консоль
+2. Получите ссылку на первый абзац с классом www. и вывести его в консоль
+<p class="www">text 1</p>
+<p class="www">text 2</p>
+  -->
+  <div id="block">
+    <p>1</p>
+    <p>2</p>
+  </div>
+  <p class="www">text 1</p>
+  <p class="www">text 2</p>
+  <script>
+  // 1. Получаем первый абзац внутри div с id "block" и выводим его в консоль -->
+    const firstParagraphInBlock = document.querySelector("#block p:first-child");
+    console.log(firstParagraphInBlock);
+
+  // 2. Получаем первый абзац с классом "www" и выводим его в консоль -->
+    const firstParagraphWithClass = document.querySelector(".www:first-of-type");
+    console.log(firstParagraphWithClass);
+  </script>
+
+  <!-- Задание 2
+1. Дан тег <a class="link" href="#">link text html</a>
+ - Вам необходимо поменять текст внутри ссылки на “link text js”
+ - Заменить href, на значение https://developer.mozilla.org/ru/
+2. Дан тег <img class="photo" src="" alt="">
+ - Вам необходимо с помощью js поменять значение src на любое изображение из интернета
+  -->
+  <a class="link" href="#">link text html</a><br>
+  <img class="photo" src="https://cdn-front.freepik.com/images/ai/image-generator/advantages/image-generator-freepik-6.webp?w=1920&h=1920&q=75" alt="Placeholder Image">
+  <script>
+  // 1. Изменение ссылки
+    const link = document.querySelector(".link");
+    link.textContent = "link text js"; // Меняем текст
+    link.href = "https://developer.mozilla.org/ru/"; // Меняем href
+
+  // 2. Изменение изображения
+    // 1. Получаем изображение
+    const image = document.querySelector(".photo");
+    image.style.width = "100px";  // Устанавливаем ширину
+    image.style.height = "100px"; // Устанавливаем высоту
+    // 2. Добавляем обработчик события на клик
+    image.addEventListener("click", function () {
+        image.src = "https://cdn-front.freepik.com/images/ai/image-generator/advantages/image-generator-freepik-8.webp?w=1920&h=1920&q=75"; // Меняем изображение
+        image.alt = "New Placeholder Image"; // Обновляем alt
+    });
+  </script>
+  <!-- Задание 3
+1. Дан тег <div class="content"></div>
+2. Создайте новый элемент p
+3. Добавьте в него текст “Новый текстовый элемент”
+4. Добавьте созданный элемент внутри <div class="content"></div>
+5. Удалите добавленный узел
+  -->
+  <div class="content"></div>
+  <script>
+  // 1. Получаем div с классом "content"
+    const contentDiv = document.querySelector(".content");
+
+  // 2. Создаем новый элемент <p>
+    const newParagraph = document.createElement("p");
+
+  // 3. Добавляем в него текст
+    newParagraph.textContent = "Новый текстовый элемент";
+
+  // 4. Добавляем <p> внутрь <div class="content">
+    contentDiv.appendChild(newParagraph);
+
+  // 5. Удаляем добавленный <p>
+    setTimeout(() => {
+        newParagraph.remove();
+    }, 3000); // Удалится через 3 секунды (для наглядности)
+
+  </script>
+  <!-- Задание 4
+1. Создать элемент button, добавить в блок <div class="content"></div>
+2. При клике на который в консоль выводится сколько раз пользователь нажал на данную кнопку
+  -->
+  <div class="content1"></div><br>
+  <script>
+  // 1. Получаем div с классом "content"
+    const contentDiff = document.querySelector(".content1");
+
+  // 2. Создаем кнопку
+    const buttonDiff = document.createElement("button");
+    buttonDiff.textContent = "Нажми меня";
+
+  // 3. Добавляем кнопку в div
+    contentDiff.appendChild(buttonDiff);
+
+  // 4. Счетчик нажатий
+    let clickCount = 0;
+
+  // 5. Добавляем обработчик события клика
+    buttonDiff.addEventListener("click", function () {
+        clickCount++; // Увеличиваем счетчик
+        console.log(`Кнопка нажата ${clickCount} раз(а)`);
+    });
+  </script>
+  <!-- Задание 5
+1. Дан тег <div class="content"></div>
+2. Создайте с помощью javascript новый элемент button
+3. Добавьте текст для кнопки “Отправить”
+4. При клике на данную кнопку необходимо чтобы текст поменялся на “Текст отправлен”
+  -->
+  <div class="content2"></div><br>
+  <script>
+  // 1. Получаем div с классом "content"
+    const contentDi = document.querySelector(".content2");
+
+  // 2. Создаем кнопку
+    const buttonDi = document.createElement("button");
+
+  // 3. Добавляем текст для кнопки
+    buttonDi.textContent = "Отправить";
+
+  // 4. Добавляем кнопку внутрь div
+    contentDi.appendChild(buttonDi);
+
+  // 5. Добавляем обработчик события клика
+    buttonDi.addEventListener("click", function () {
+        buttonDi.textContent = "Текст отправлен"; // Меняем текст кнопки
+    });
+  </script>
+</body>
+</html>
