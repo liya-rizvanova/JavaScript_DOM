@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- Задание 1
+  <div class="block"></div>
+1. Дан блок, внутри него необходимо создать элемент div с
+классом item, разместить текст “Элемент внутри” и задать стили
+ - Цвет текста синий
+ - Рамка сплошная черная
+ - Цвет фона #f8f8f8
+ - Внутренний отступ 16px
+2. Добавить данному блоку класс item_1 (использовать setAttribute)
+  -->
+  <div class="block"></div>
+  <script>
+  // 1. Получаем блок с классом "block"
+    const block = document.querySelector(".block");
+
+  // 2. Создаем новый элемент <div> с классом "item"
+    const itemDiv = document.createElement("div");
+    itemDiv.className = "item"; // добавляем класс
+    itemDiv.textContent = "Элемент внутри"; // добавляем текст
+
+  // 3. Устанавливаем стили
+    itemDiv.style.color = "blue";                // Цвет текста синий
+    itemDiv.style.border = "1px solid black";    // Рамка сплошная черная
+    itemDiv.style.backgroundColor = "#f8f8f8";   // Цвет фона
+    itemDiv.style.padding = "16px";              // Внутренний отступ
+
+  // 4. Добавляем созданный элемент внутрь блока
+    block.appendChild(itemDiv);
+
+  // 5. Добавляем блоку класс item_1 с помощью setAttribute
+    block.setAttribute("class", block.className + " item_1");
+  </script>
+
+  <!-- Задание 2
+1. Дан код
+  <div class="elem">
+    <img src="photo.png" alt="photo">
+    <div class="content">
+      <h2 class="heading">Lorem, ipsum dolor.</h2>
+      <p class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae, ea!</p>
+    </div>
+  </div>
+2. Необходимо с помощью querySelector найти параграф с классом text
+ - Вывести в консоль соседний элемент h2
+ - Вывести в консоль родительский элемент content
+ - Вывести в консоль картинку
+ - Вывести в консоль родительский элемент elem
+  -->
+  <div class="elem">
+    <img src="https://cdn-front.freepik.com/images/ai/upscaler/advantage/image-scaler-3.webp?w=1920&h=1920&q=75" alt="photo">
+    <div class="content">
+      <h2 class="heading">Lorem, ipsum dolor.</h2>
+      <p class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae, ea!</p>
+    </div>
+  </div>
+  <script>
+  // 1. Находим параграф с классом "text"
+    const paragraph = document.querySelector(".text");
+
+  // 2. Выводим в консоль соседний элемент h2 (предыдущий братский элемент)
+    const heading = paragraph.previousElementSibling;
+    console.log("Соседний элемент h2:", heading);
+
+  // 3. Выводим в консоль родительский элемент с классом "content"
+    const contentDiv = paragraph.parentElement;
+    console.log("Родительский элемент .content:", contentDiv);
+
+  // 4. Выводим в консоль картинку (img внутри .elem)
+    const image = document.querySelector(".elem img");
+    image.style.width = "100px";  // Устанавливаем ширину
+    image.style.height = "100px"; // Устанавливаем высоту
+    console.log("Картинка:", image);
+
+  // 5. Выводим в консоль родительский элемент .elem
+    const elemDiv = paragraph.closest(".elem");
+    console.log("Родительский элемент .elem:", elemDiv);
+  </script>
+  <!-- Задание 3
+<div class="item">
+  <div class="elem">
+    <div class="info">
+      <h2 class="subtitle">Lorem, ipsum dolor.</h2>
+    </div>
+  </div>
+</div>
+С помощью querySelector найти элемент h2 и вывести в консоль всех его
+родителей
+  -->
+  <div class="item">
+    <div class="elem">
+      <div class="info">
+        <h2 class="subtitle">Lorem, ipsum dolor.</h2>
+      </div>
+    </div>
+  </div>
+  <script>
+  // Способ 1
+  // 1. Находим h2 с классом "subtitle"
+    const h2 = document.querySelector(".subtitle");
+
+  // 2. Поднимаемся по всем родителям и выводим их в консоль
+    let parent = h2.parentElement;
+
+    while (parent) {
+      console.log(parent);
+      parent = parent.parentElement;
+    }
+  // Способ 2
+    let itemEl = document.querySelector(".subtitle");
+
+    while (itemEl.parentElement) {
+        itemEl = itemEl.parentElement;
+        console.log(itemEl);
+      }
+  </script>
+  <!-- Задание 4
+<form action="#">
+  <input type="text">
+  <button class="btn">Отправить</button>
+</form>
+1. Дано поле ввода и кнопка отправить, необходим реализовать функционал,
+если пользователь нажимает на кнопку отправить, а поле ввода пустое, то
+под полем ввода и кнопкой должен появиться заголовок h2 с текстом вы не
+заполнили поле ввода
+2. Цвет у рамки сделать красным
+  -->
+  <form action="#" class="form">
+    <input type="text" class="input">
+    <button class="btn" type="submit">Отправить</button>
+  </form>
+  <script>
+  // Способ 1
+    const form = document.querySelector(".form");
+    const input = document.querySelector(".input");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault(); // Отменяем стандартную отправку формы
+
+      // Проверяем, пустое ли поле
+      if (input.value.trim() === "") {
+        // Устанавливаем красную рамку
+        input.style.border = "2px solid red";
+
+        // Проверяем, существует ли уже сообщение, чтобы не дублировать
+        if (!document.querySelector(".warning")) {
+          // Создаем заголовок h2
+          const warning = document.createElement("h2");
+          warning.textContent = "Вы не заполнили поле ввода";
+          warning.classList.add("warning");
+
+          // Добавляем заголовок после формы
+          form.appendChild(warning);
+        }
+      }
+    });
+  </script>
+  <form action="#" class="formS">
+    <input type="text" class="inputS">
+    <button class="btn" type="submit">Отправить</button>
+  </form>
+  <script>
+  // Способ 2
+    const formEl = document.querySelector(".formS");
+    const inputEl = formEl.querySelector(".inputS");
+    const btnEl = formEl.querySelector(".btn");
+
+    const h2El = document.createElement("h2");
+    h2El.textContent = "Вы не заполнили поле ввода";
+
+    btnEl.onclick = function() {
+      if (inputEl.value) {
+        console.log('Что-то есть');
+      } else {
+        formEl.appendChild(h2El);
+        inputEl.style.border = "2px solid green";
+      }
+    }
+  </script>
+</body>
+</html>
