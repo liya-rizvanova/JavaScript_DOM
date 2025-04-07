@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- Задание 1
+1. В html создать кнопку button
+2. После загрузки страницы вывести в консоль текст “страница загрузилась”
+3. Добавить событие onclick которое выводит в консоль текст “событие onclick”
+4. Добавить событие addEventListener которое выводит в консоль текст “событие addEventListener”
+  -->
+  <button id="myButton">Нажми меня</button>
+  <br><br>
+  <script>
+    // Срабатывает после полной загрузки страницы
+    window.onload = function () {
+      console.log("страница загрузилась");
+
+      const button = document.getElementById("myButton");
+
+      // Событие onclick
+      button.onclick = function () {
+        console.log("событие onclick");
+      };
+
+      // Событие через addEventListener
+      button.addEventListener("click", function () {
+        console.log("событие addEventListener");
+      });
+    };
+  </script>
+
+  <!-- Задание 2
+1. Создать в html три кнопки button с нумерацией (1, 2, 3 соответственно)
+2. Добавить клик на кнопку , чтобы в консоль выводилась именно та кнопка на которую мы нажали
+3. Добавить кнопку button с текстом 4, которая считает сколько раз на нее нажали и количество нажатий на эту кнопку выводит в консоль
+4. Создать кнопку button с текстом 5, При клике на которую, меняется текст данной кнопки на “Вы нажали на эту кнопку”
+  -->
+  <!-- Кнопки 1, 2, 3 -->
+  <button class="numbered-button">1</button>
+  <button class="numbered-button">2</button>
+  <button class="numbered-button">3</button>
+  <br><br>
+
+  <!-- Кнопка 4 -->
+  <button id="counterButton">4</button>
+  <br><br>
+
+  <!-- Кнопка 5 -->
+  <button id="changeTextButton">5</button>
+  <br><br>
+  <script>
+    window.onload = function () {
+      // Пункты 1 и 2 — кнопки 1, 2, 3
+      const buttons = document.querySelectorAll(".numbered-button");
+      buttons.forEach(button => {
+        button.addEventListener("click", () => {
+          console.log(`Вы нажали на кнопку ${button.textContent}`);
+        });
+      });
+
+      // Пункт 3 — кнопка 4 (счётчик)
+      const counterButton = document.getElementById("counterButton");
+      let count = 0;
+      counterButton.addEventListener("click", () => {
+        count++;
+        console.log(`Кнопка 4 нажата ${count} раз`);
+      });
+
+      // Пункт 4 — кнопка 5 (смена текста)
+      const changeTextButton = document.getElementById("changeTextButton");
+      changeTextButton.addEventListener("click", () => {
+        changeTextButton.textContent = "Вы нажали на эту кнопку";
+      });
+    };
+  </script>
+  <!-- Задание 3
+1. Создать кнопку, которая добавляем заголовок h1 с текстом, “Новый заголовок, данный элемент нужно расположить после кнопки
+2. Создать вторую кнопку, которая будет удалять созданный заголовок h1
+3.Создать третью кнопку, при наведении на которую в консоль будет выводиться текст “вы навели на данную кнопку” ,
+как только вы убираем курсор мыши с кнопки, в консоли должен появиться текст “Наведения на кнопку больше нет”
+  -->
+  <!-- Кнопка 1 -->
+  <button id="addHeadingButton">Добавить заголовок</button>
+  <br><br>
+
+  <!-- Кнопка 2 -->
+  <button id="removeHeadingButton">Удалить заголовок</button>
+  <br><br>
+
+  <!-- Кнопка 3 -->
+  <button id="hoverButton">Наведи на меня</button>
+  <br><br>
+  <script>
+    window.onload = function () {
+      // Кнопка 1 — добавление заголовка
+      const addButton = document.getElementById("addHeadingButton");
+      let headingElement = null;
+
+      addButton.addEventListener("click", () => {
+        if (!headingElement) {
+          headingElement = document.createElement("h1");
+          headingElement.textContent = "Новый заголовок";
+          addButton.insertAdjacentElement("afterend", headingElement);
+        }
+      });
+
+      // Кнопка 2 — удаление заголовка
+      const removeButton = document.getElementById("removeHeadingButton");
+      removeButton.addEventListener("click", () => {
+        if (headingElement) {
+          headingElement.remove();
+          headingElement = null;
+        }
+      });
+
+      // Кнопка 3 — наведение/уход мыши
+      const hoverButton = document.getElementById("hoverButton");
+      hoverButton.addEventListener("mouseenter", () => {
+        console.log("вы навели на данную кнопку");
+      });
+      hoverButton.addEventListener("mouseleave", () => {
+        console.log("Наведения на кнопку больше нет");
+      });
+    };
+  </script>
+  <!-- Задание 4
+1. Создать в html список состоящий из 3-х произвольных элементов li
+2. Нужно создать кнопку которая будет добавлять элементы списка с текстом “новый элемент списка”
+3. Создать кнопку, которая будет удалять первый элемент из созданного списка
+4. Создать кнопку, при клике на которую ей добавляется класс “click”
+  -->
+  <!-- Список -->
+  <ul id="myList">
+    <li>Элемент 1</li>
+    <li>Элемент 2</li>
+    <li>Элемент 3</li>
+  </ul>
+
+  <!-- Кнопки -->
+  <button id="addItemButton">Добавить элемент в список</button>
+  <button id="removeFirstItemButton">Удалить первый элемент списка</button>
+  <button id="addClassButton">Добавить класс “click”</button>
+  <script>
+    window.onload = function () {
+      const list = document.getElementById("myList");
+
+      // Кнопка 1 — добавить элемент
+      document.getElementById("addItemButton").addEventListener("click", () => {
+        const li = document.createElement("li");
+        li.textContent = "новый элемент списка";
+        list.appendChild(li);
+      });
+
+      // Кнопка 2 — удалить первый элемент
+      document.getElementById("removeFirstItemButton").addEventListener("click", () => {
+        if (list.firstElementChild) {
+          list.removeChild(list.firstElementChild);
+        }
+      });
+
+      // Кнопка 3 — добавить класс "click"
+      document.getElementById("addClassButton").addEventListener("click", function () {
+        this.classList.add("click");
+      });
+    };
+  </script>
+</body>
+</html>
