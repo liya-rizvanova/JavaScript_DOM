@@ -1,0 +1,120 @@
+<!--
+ Работа с JSON
+Дан HTML -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width,
+		initial-scale=1.0"
+		/>
+		<title>Products List</title>
+		<style>
+			/* Стили по желанию */
+			ul {
+				list-style-type: none;
+				padding: 0;
+			}
+			li {
+				margin: 20px 0;
+				padding: 10px;
+				border: 1px solid #ccc;
+				border-radius: 5px;
+				display: flex;
+				align-items: center;
+				flex-direction: column;
+			}
+			img {
+				margin-bottom: 10px;
+			}
+			h2 {
+				margin: 0;
+				font-size: 1.5rem;
+			}
+			button {
+				margin-top: 10px;
+				padding: 10px 15px;
+				border: none;
+				border-radius: 5px;
+				background-color: #007bff;
+				color: white;
+				cursor: pointer;
+			}
+			button:hover {
+				background-color: #0056b3;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Products List</h1>
+		<ul id="product-list">
+			<!-- Сюда будут добавляться продукты -->
+		</ul>
+		<!-- Подключение файла data.js -->
+		<script src="data.js"></script>
+		<!-- Подключение файла script.js -->
+		<script src="script.js"></script>
+	</body>
+</html>
+<!-- Задачи:
+1. Получите данные по адресу https://fakestoreapi.com/products.
+2. Создайте файл data.js.
+3. В файле data.js создайте переменную dataJSON, которая будет
+хранить эти данные в формате JSON.
+4. Создайте вторую переменную data, в которой сохраните данные в
+формате массива на основе dataJSON.
+5. Создайте файл index.html.
+6. Подключите data.js в index.html.
+7. Сформируйте контент из данных (картинка, заголовок, описание,
+цена и кнопка “Add to Cart”).
+8. Добавьте данный контент в верстку в виде списка ul и li.
+9. Добавьте стили при необходимости (по желанию). -->
+<!-- Эталонное решение:
+Файл data.js:
+// Пример данных в формате JSON
+const dataJSON = '[{"id":1,"title":"Product
+1","description":"Description for product
+1","price":10.99,"image":"https://via.placeholder.com/150"},{"id":2,
+"title":"Product 2","description":"Description for product
+2","price":12.99,"image":"https://via.placeholder.com/150"},{"id":3,
+"title":"Product 3","description":"Description for product
+3","price":15.99,"image":"https://via.placeholder.com/150"}]';
+// Преобразование строки JSON в объект JavaScript
+const data = JSON.parse(dataJSON);
+Файл script.js:
+"use strict";
+// Функция для добавления продуктов в список
+function addProductsToList(products) {
+const productList = document.getElementById('product-list');
+products.forEach(product => {
+// Создаем элементы для каждого продукта
+const listItem = document.createElement('li');
+listItem.className = 'product-item'; // Можно добавить свои
+стили
+const img = document.createElement('img');
+img.src = product.image;
+img.alt = product.title;
+img.width = 150;
+img.height = 150;
+const title = document.createElement('h2');
+title.textContent = product.title;
+const description = document.createElement('p');
+description.textContent = product.description;
+const price = document.createElement('p');
+price.textContent = `Price: $${product.price.toFixed(2)}`;
+const button = document.createElement('button');
+button.className = 'add-to-cart';
+button.setAttribute('data-id', product.id);
+button.textContent = 'Add to Cart';
+// Добавляем все элементы в родительский элемент
+listItem.append(img, title, description, price, button);
+// Добавляем элемент списка в ul
+productList.append(listItem);
+});
+}
+// После загрузки DOM вызываем функцию для добавления продуктов
+document.addEventListener('DOMContentLoaded', () => {
+addProductsToList(data);
+}); -->
