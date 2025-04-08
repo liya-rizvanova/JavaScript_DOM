@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<!-- Задание 1
+1. В html создать элемент checkbox и текст рядом с ним “Согласен с условиями”
+2. Добавить кнопку отправить
+3. При клике на кнопку отправить нужно проверять выбран ли активным элемент checkbox
+4. Если элемент не выбран, добавить текст под чекбоксом “Необходимо согласиться с условиями”
+  -->
+		<label>
+			<input type="checkbox" id="agreeCheckbox" />
+			Согласен с условиями
+		</label>
+		<br /><br />
+
+		<button id="submitButton">Отправить</button>
+
+		<div id="error"></div>
+		<script>
+			const checkbox = document.getElementById("agreeCheckbox");
+			const submitButton = document.getElementById("submitButton");
+			const errorMessage = document.getElementById("error");
+
+			// Задание стиля напрямую через JS
+			errorMessage.style.color = "red";
+			errorMessage.style.marginTop = "8px";
+
+			submitButton.addEventListener("click", () => {
+				if (!checkbox.checked) {
+					errorMessage.textContent = "Необходимо согласиться с условиями";
+				} else {
+					errorMessage.textContent = "";
+					console.log("Форма отправлена");
+				}
+			});
+		</script>
+
+		<!-- Задание 2
+1. В html создать 2 элемента радио кнопки (input type=”radio”) и текст “Чай”, “Кофе” соответственно
+2. Кнопка отправить
+3. Если выбран чай, необходимо вывести сообщение “Чай закончился”
+4. Если выбран кофе, необходимо вывести соообщение “кофе закончился”
+  -->
+		<label> <input type="radio" name="drink" id="tea" />Чай </label>
+		<br />
+		<label> <input type="radio" name="drink" id="coffee" />Кофе </label>
+		<br /><br />
+
+		<button id="submitButton2">Отправить</button>
+
+		<div id="message" style="margin-top: 10px; color: red"></div>
+		<br /><br />
+		<script>
+			const submitButton2 = document.getElementById("submitButton2");
+			const message = document.getElementById("message");
+
+			submitButton2.addEventListener("click", () => {
+				const tea = document.getElementById("tea");
+				const coffee = document.getElementById("coffee");
+
+				if (tea.checked) {
+					message.textContent = "Чай закончился";
+				} else if (coffee.checked) {
+					message.textContent = "Кофе закончился";
+				} else {
+					message.textContent = "Выберите напиток";
+				}
+			});
+		</script>
+		<!-- Задание 3
+1. Создать поле ввода (пароль)
+2. Кнопка отправить
+3. Если пользователь вводит текст “пароль” то поле ввода должно быть подсвечено зеленым цветом
+4. Если пароль неверный, у поля ввода появляется красная обводка и текст “пароль неверный”
+  -->
+		<style>
+			#passwordInput {
+				padding: 5px;
+				border: 2px solid #ccc;
+				outline: none;
+			}
+
+			#passwordInput.valid {
+				border: 2px solid green;
+			}
+
+			#passwordInput.invalid {
+				border: 2px solid red;
+			}
+
+			#error3 {
+				color: red;
+				margin-top: 5px;
+			}
+		</style>
+		<input type="password" id="passwordInput" placeholder="Введите пароль" />
+		<button id="submitButton3">Отправить</button>
+		<div id="error3"></div>
+		<br /><br />
+		<script>
+			const passwordInput = document.getElementById("passwordInput");
+			const submitButton3 = document.getElementById("submitButton3");
+			const error3 = document.getElementById("error3");
+
+			submitButton3.addEventListener("click", () => {
+				const value = passwordInput.value;
+
+				// Сброс стилей и сообщения
+				passwordInput.classList.remove("valid", "invalid");
+				error3.textContent = "";
+
+				if (value === "пароль") {
+					passwordInput.classList.add("valid");
+					console.log("Верно");
+				} else {
+					passwordInput.classList.add("invalid");
+					error3.textContent = "Пароль неверный";
+				}
+			});
+		</script>
+		<!-- Задание 4
+1. Создать поле ввода и под ним заголовок h1 с текстом “Заголовок”
+2. При вводе текста в поле ввода необходимо чтобы текст внутри заголовка меняется на введенный в поле ввода
+  -->
+		<input type="text" id="inputText" placeholder="Введите текст" />
+		<h1 id="dynamicHeader">Заголовок</h1>
+		<script>
+			const input = document.getElementById("inputText");
+			const header = document.getElementById("dynamicHeader");
+
+			input.addEventListener("input", () => {
+				header.textContent = input.value;
+			});
+		</script>
+	</body>
+</html>
