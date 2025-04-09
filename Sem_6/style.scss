@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:wght@800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-family: Lato;
+  gap: 40px;
+}
+
+.card {
+  width: 652px;
+  box-shadow: 17px 19px 24px 0px #00000021;
+  display: flex;
+  position: relative;
+}
+
+img {
+  width: 262px;
+}
+
+.description {
+  padding: 22px 97px 62px 31px;
+}
+
+h2 {
+  font-weight: 400;
+  font-size: 24px;
+  margin-bottom: 42px;
+  color: #222222;
+  max-width: 200px;
+}
+
+p {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 100%;
+  color: #575757;
+}
+
+.red {
+  color: #EF5B70;
+}
+
+.grey {
+  color: #6F6E6E;
+}
+
+input {
+  font-weight: 400;
+  font-size: 18px;
+  color: #656565;
+  width: 44px;
+  height: 24px;
+  text-align: center;
+  padding-left: 15px;
+  margin-left: 24px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.close {
+  position: absolute;
+  top: 28px;
+  right: 22px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
