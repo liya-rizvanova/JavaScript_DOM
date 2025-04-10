@@ -67,12 +67,13 @@ button {
 
 button:hover {
   background-color: white;
-  color: #222222;
+  color: #ef5b70;
   border: 1px solid #ef5b70;
 }
 
 .cart {
-  margin-top: 40px;
+  max-width: 1400px;
+  margin: 50px auto 50px auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
